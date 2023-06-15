@@ -26,8 +26,8 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run the script
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        # env:
+        #   GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          gh auth login --with-token
+          gh auth login --with-token < ${{ secrets.GH_TOKEN }}
           receiver="${{ github.events.inputs.value }}" ./script.sh
