@@ -29,5 +29,4 @@ jobs:
         run: |
           echo ${{ secrets.GH_TOKEN }} > token.txt
           gh auth login < token.txt
-          receiver=${{ github.events.inputs.value }} 
-          ./script.sh
+          receiver="${{ github.events.inputs.value }}" ./script.sh
