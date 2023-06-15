@@ -5,8 +5,11 @@ this is just a demonstration that's why we are keeping the secrets in clear text
 # To test the script at local system.
 1) pull the script to local.
 2) run the script like following
+
     ```receiver="recipient email address" ./script.sh```
+
     Example:
+    
     ```receiver=devopshemant@gmail.com ./script.sh```
 
 # To test the script with GitHub Actions.
