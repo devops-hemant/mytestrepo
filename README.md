@@ -1,6 +1,6 @@
 # mytestrepo
 
-For this assignment I am fetching few details regading the PRs but this can be modified later as per the requirement. Also as this is just a demonstration that's why I am keeping the secrets in clear text only.
+For the sake of this assignment I am fetching few details regading the PRs but this can be modified later as per the requirement. Also as this is just a demonstration that's why I am keeping the secrets in clear text only.
 
 # To test the script at local system.
 1) Pull the script to local.
