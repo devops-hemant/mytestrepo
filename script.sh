@@ -5,13 +5,16 @@ gh --version > /dev/null 2>&1
 if [ $? != 0 ];
 then
     echo "kindly install the Github CLI to process further"
+    echo "Also add the github token in the gittoken.txt file"
+    echo "Adding token in the clear text format is not recommended kindly follow the best security practices"  
 fi
 
 sender=nowhemantsharma@gmail.com
 receiver=hemantsharmanow@gmail.com # read -p "enter the receivers email address" 
 gapp=rrrwlykrdpfaxwgv
 sub="Weekly PR Summary"
-gh auth login --with-token < gittoken.txt 
+
+gh auth login --with-token < gittoken.txt
 
 gh pr list -L 7 -R https://github.com/microsoft/Microsoft365DSC -s all --json number,title,headRefName,state,isDraft,closed,updatedAt --template \
 	'{{tablerow "NUMBER" "TITLE" "headRefName" "STATE" "DRAFT" "CLOSED" "DATE"}}{{range .}}{{tablerow (printf "#%v" .number | autocolor "green") .title .headRefName .state .isDraft .closed (timeago .updatedAt)}}{{end}}' > /tmp/weekly_pr.txt
