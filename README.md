@@ -1,6 +1,6 @@
 # mytestrepo
 
-This is just a demonstration that's I am keeping the secrets in clear text only
+This is just a demonstration that's why I am keeping the secrets in clear text only
 
 # To test the script at local system.
 1) Pull the script to local.
