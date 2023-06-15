@@ -7,7 +7,7 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
     inputs:
-      recipient:
+      value:
         description: "please enter the recipient email address"
         required: true
         type: string
@@ -29,4 +29,4 @@ jobs:
         run: |
           echo ${{ secrets.GH_TOKEN }} > token.txt
           gh auth login < token.txt
-          receiver=${{ github.events.inputs.recipient }} ./script.sh
+          receiver=${{ github.events.inputs.value }} ./script.sh
