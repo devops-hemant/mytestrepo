@@ -9,7 +9,7 @@ on:
     inputs:
       value:
         description: "please enter the recipient email address"
-        required: false
+        required: true
         type: string
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
