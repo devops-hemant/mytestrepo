@@ -29,5 +29,56 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          gh auth login --with-token < ${{ env.GH_TOKEN }}
-          receiver="${{ github.events.inputs.value }}" ./script.sh
+
+          echo "${{ env.GH_TOKEN }}" > github-token.txt
+          
+          gh --version > /dev/null 2>&1
+
+          if [ $? != 0 ];
+          then
+            echo "kindly install the Github CLI to process further"
+            exit 1
+          fi
+
+          gh auth status > /dev/null 2>&1
+
+          if [ $? != 0 ];
+          then
+              if [ -s github-token.txt ]; 
+              then
+                  gh auth login --with-token < github-token.txt > /dev/null 2>&1
+                  if [ $? != 0 ]
+                  then
+                  echo "kindly login the GitHub CLI with "gh auth login" or add the github token in the github-token.txt file"
+                  echo "If github-token.txt doesn't exist then create the file and add the github token in it."
+                  # Note: Adding token in the clear text format is not recommended this is for just demonstration only kindly follow the best security practices.
+                  exit 1
+                  fi
+              fi
+          fi
+
+
+          sender=nowhemantsharma@gmail.com
+          receiver=${{ inputs.value }}
+          # receiver=hemantsharmanow@gmail.com  # read -p "Enter the receiver's email address" receiver
+          gapp=rrrwlykrdpfaxwgv               #not secure but for demo purpose kept it as clear text. 
+          sub="Weekly PR Summary"
+
+
+
+          gh pr list -L 7 -R https://github.com/microsoft/Microsoft365DSC -s all --json number,title,headRefName,state,isDraft,closed,updatedAt --template '{{tablerow "NUMBER" "TITLE" "headRefName" "STATE" "DRAFT" "CLOSED" "DATE"}}{{range .}}{{tablerow (printf "#%v" .number | autocolor "green") .title .headRefName .state .isDraft .closed (timeago .updatedAt)}}{{end}}' > weekly_pr.txt
+
+
+          body="Kindly check the attachment for the weekly PR summary"
+
+          file="weekly_pr.txt"
+    
+              MIMEType=`file --mime-type "$file" | sed 's/.*: //'`
+              curl -s --url 'smtps://smtp.gmail.com:465' --ssl-reqd \
+              --mail-from $sender \
+              --mail-rcpt $receiver\
+              --user $sender:$gapp \
+               -H "Subject: $sub" -H "From: $sender" -H "To: $receiver" -F \
+              '=(;type=multipart/mixed' -F "=$body;type=text/plain" -F \
+                "file=@$file;type=$MIMEType;encoder=base64" -F '=)'
+
