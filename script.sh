@@ -5,16 +5,33 @@ gh --version > /dev/null 2>&1
 if [ $? != 0 ];
 then
     echo "kindly install the Github CLI to process further"
-    echo "Also add the github token in the gittoken.txt file"
-    echo "Adding token in the clear text format is not recommended kindly follow the best security practices"  
+    exit 1
 fi
 
+gh auth status > /dev/null 2>&1
+
+if [ $? != 0 ];
+then
+    if [ -s github-token.txt ]; 
+    then
+        gh auth login --with-token < github-token.txt > /dev/null 2>&1
+        if [ $? != 0 ]
+        then
+        echo "kindly login the GitHub CLI with "gh auth login" or add the github token in the github-token.txt file"
+        echo "If github-token.txt doesn't exist then create the file and add the github token in it."
+        # Note: Adding token in the clear text format is not recommended this is for just demonstration only kindly follow the best security practices.
+        exit 1
+        fi
+    fi
+fi
+
+
 sender=nowhemantsharma@gmail.com
-receiver=hemantsharmanow@gmail.com # read -p "enter the receivers email address" 
-gapp=rrrwlykrdpfaxwgv
+receiver=hemantsharmanow@gmail.com  # read -p "Enter the receiver's email address" receiver
+gapp=rrrwlykrdpfaxwgv               #not secure but for demo purpose kept it as clear text. 
 sub="Weekly PR Summary"
 
-gh auth login --with-token < gittoken.txt
+
 
 gh pr list -L 7 -R https://github.com/microsoft/Microsoft365DSC -s all --json number,title,headRefName,state,isDraft,closed,updatedAt --template \
 	'{{tablerow "NUMBER" "TITLE" "headRefName" "STATE" "DRAFT" "CLOSED" "DATE"}}{{range .}}{{tablerow (printf "#%v" .number | autocolor "green") .title .headRefName .state .isDraft .closed (timeago .updatedAt)}}{{end}}' > weekly_pr.txt

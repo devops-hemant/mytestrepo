@@ -1,0 +1,8 @@
+NUMBER  TITLE                          headRefName           STATE   DRAFT  CLOSED  DATE
+#3387   Release 1.23.614.1             Dev                   MERGED  false  true    3 hours ago
+#3386   Release 1.23.614.1             Dev                   MERGED  false  true    4 hours ago
+#3385   MSCloudLoginAssistant Upda...  MSCloudLoginAssis...  MERGED  false  true    1 day ago
+#3384   Updated DSCParser              Updated-DSCParser     MERGED  false  true    1 day ago
+#3381   AADApplication adds suppor...  AADApplication-ad...  MERGED  false  true    2 days ago
+#3380   Fixes #3373                    Fixes-3323            MERGED  false  true    2 days ago
+#3379   Fix typo in powershell7-su...  patch-1               MERGED  false  true    2 days ago
