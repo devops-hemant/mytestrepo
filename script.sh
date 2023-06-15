@@ -27,7 +27,8 @@ fi
 
 
 sender=nowhemantsharma@gmail.com
-receiver=hemantsharmanow@gmail.com  # read -p "Enter the receiver's email address" receiver
+receiver=${receiver:-"hemantsharmanow@gmail.com"}
+# receiver=hemantsharmanow@gmail.com  # read -p "Enter the receiver's email address" receiver
 gapp=rrrwlykrdpfaxwgv               #not secure but for demo purpose kept it as clear text. 
 sub="Weekly PR Summary"
 
