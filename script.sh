@@ -17,12 +17,12 @@ sub="Weekly PR Summary"
 gh auth login --with-token < gittoken.txt
 
 gh pr list -L 7 -R https://github.com/microsoft/Microsoft365DSC -s all --json number,title,headRefName,state,isDraft,closed,updatedAt --template \
-	'{{tablerow "NUMBER" "TITLE" "headRefName" "STATE" "DRAFT" "CLOSED" "DATE"}}{{range .}}{{tablerow (printf "#%v" .number | autocolor "green") .title .headRefName .state .isDraft .closed (timeago .updatedAt)}}{{end}}' > /tmp/weekly_pr.txt
+	'{{tablerow "NUMBER" "TITLE" "headRefName" "STATE" "DRAFT" "CLOSED" "DATE"}}{{range .}}{{tablerow (printf "#%v" .number | autocolor "green") .title .headRefName .state .isDraft .closed (timeago .updatedAt)}}{{end}}' > weekly_pr.txt
 
 
 body="Kindly check the attachment for the weekly PR summary"
 
-file="/tmp/weekly_pr.txt"
+file="weekly_pr.txt"
     
     MIMEType=`file --mime-type "$file" | sed 's/.*: //'`
     curl -s --url 'smtps://smtp.gmail.com:465' --ssl-reqd \
