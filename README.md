@@ -6,14 +6,14 @@ For the sake of this assignment I am fetching few details regading the PRs but t
 1) Pull the script to local.
 2) Run the script like following
 
-    ```receiver="recipient email address" ./script.sh```
+    ```receiver="recipient email address" repository="repository URL" ./script.sh```
 
     Example:
 
-    ```receiver=devopshemant@gmail.com ./script.sh```
+    ```receiver="devopshemant@gmail.com" repository="https://github.com/Azure/k8s-set-context" ./script.sh```
 
 # To test the script with GitHub Actions.
 1) Go to Actions tab.
-1) Click on the PR_report_send workflow.
-2) Click on "Run workflow" button.
-3) Enter recipient email address and hit the "Run workflow" button.
+2) Click on the PR_report_send workflow.
+3) Click on "Run workflow" button.
+4) Enter recipient email address and hit the "Run workflow" button.

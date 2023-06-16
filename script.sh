@@ -39,10 +39,10 @@ receiver=${receiver:="hemantsharmanow@gmail.com"}
 # receiver=hemantsharmanow@gmail.com  # read -p "Enter the receiver's email address" receiver
 gapp=rrrwlykrdpfaxwgv               #not secure but for demo purpose kept it as clear text. 
 sub="Weekly PR Summary"
+repository=${repository:="https://github.com/microsoft/Microsoft365DSC"}
 
 
-
-gh pr list -L 7 -R https://github.com/microsoft/Microsoft365DSC -s all --json number,title,headRefName,state,isDraft,closed,updatedAt --template \
+gh pr list -L 7 -R $repository -s all --json number,title,headRefName,state,isDraft,closed,updatedAt --template \
 	'{{tablerow "NUMBER" "TITLE" "headRefName" "STATE" "DRAFT" "CLOSED" "DATE"}}{{range .}}{{tablerow (printf "#%v" .number | autocolor "green") .title .headRefName .state .isDraft .closed (timeago .updatedAt)}}{{end}}' > /tmp/weekly_pr.txt
 
 
