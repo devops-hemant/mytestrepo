@@ -21,7 +21,6 @@ then
         echo "Alternatively, populate the GH_TOKEN environment variable with a GitHub API authentication token."
         echo "Alternatively, add a working github token in the github-token.txt file"
         echo "If github-token.txt doesn't exist then create the file and add the github token in it."
-        # Note: Adding token in the clear text format is not recommended this is for just demonstration only kindly follow the best security practices.
         exit 1
         fi
     else
