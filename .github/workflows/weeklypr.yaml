@@ -8,8 +8,8 @@ on:
   workflow_dispatch:
     inputs:
       repository:
-        description: "please enter the github repository URL"
-        required: true
+        description: "please enter the GitHub repository URL"
+        required: false
         type: string
       email:
         description: "please enter the recipient email address"
