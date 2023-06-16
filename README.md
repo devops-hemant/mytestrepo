@@ -16,5 +16,5 @@ For the sake of this assignment I am fetching few details regading the PRs but t
 1) Go to Actions tab.
 2) Click on the PR_report_send workflow.
 3) Click on "Run workflow" button.
-4) Enter the Repository URL
+4) Enter the repository URL
 5) Enter recipient email address and hit the "Run workflow" button.
